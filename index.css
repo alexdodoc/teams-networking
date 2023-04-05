@@ -1,0 +1,23 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  border: 1px solid blue;
+  padding: 5px;
+}
+
+table th {
+  background-color: blue;
+  color: white;
+}
+
+table tr {
+  background-color: aliceblue;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
