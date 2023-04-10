@@ -5,17 +5,13 @@ table {
 
 table th,
 table td {
-  border: 1px solid blue;
+  border: 1px solid #29a7e1;
   padding: 5px;
 }
 
 table th {
-  background-color: blue;
+  background-color: #00aeef;
   color: white;
-}
-
-table tr {
-  background-color: aliceblue;
 }
 
 table tr:nth-child(even) {
