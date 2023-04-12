@@ -2,8 +2,8 @@ function getTeamsRequest() {
   return fetch("http://localhost:3000/teams-json", {
     method: "GET",
     headers: {
-      "Content-Type": "application/json",
-    },
+      "Content-Type": "application/json"
+    }
   }).then((r) => {
     return r.json();
   });
@@ -13,9 +13,9 @@ function createTeamRequest(team) {
   return fetch("http://localhost:3000/teams-json/create", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
-    body: JSON.stringify(team),
+    body: JSON.stringify(team)
   }).then((r) => r.json());
 }
 
@@ -23,9 +23,9 @@ function deleteTeamRequest(id) {
   return fetch("http://localhost:3000/teams-json/delete", {
     method: "DELETE",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
-    body: JSON.stringify({ id }), // nume cheie = nume var valoare
+    body: JSON.stringify({ id }) // nume cheie = nume var valoare
   }).then((r) => r.json());
 }
 
@@ -63,7 +63,7 @@ function formSubmit(e) {
     promotion,
     members,
     name,
-    url,
+    url
   };
 
   createTeamRequest(team).then((status) => {
