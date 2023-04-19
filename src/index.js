@@ -114,11 +114,30 @@ function startEditTeam(id) {
   $("#url").value = team.url;
 }
 
+function searchTeams(search) {
+  return allTeams.filter((team) => {
+    if (team.members.toLowerCase().includes(search.toLowerCase())) {
+      return true;
+    } else if (team.promotion.toLowerCase().includes(search.toLowerCase())) {
+      return true;
+    } else if (team.promotion.toLowerCase().includes(search.toLowerCase())) {
+      return true;
+    }
+  });
+}
+
 function initEvents() {
   const form = $("#editForm");
   form.addEventListener("submit", formSubmit);
   form.addEventListener("reset", () => {
     editId = undefined;
+  });
+
+  $("#search").addEventListener("input", (e) => {
+    const search = e.target.value; // = $("#search").value
+    console.info("search", search);
+    const teams = searchTeams(search);
+    showTeams(teams);
   });
 
   $("table tbody").addEventListener("click", (e) => {
