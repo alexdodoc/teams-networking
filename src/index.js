@@ -114,9 +114,9 @@ function startEditTeam(id) {
   $("#url").value = team.url;
 }
 
-function searchTeams(search) {
+function searchTeams(teams, search) {
   search = search.toLowerCase();
-  return allTeams.filter((team) => {
+  return teams.filter((team) => {
     return (
       team.members.toLowerCase().includes(search) ||
       team.promotion.toLowerCase().includes(search) ||
@@ -136,7 +136,7 @@ function initEvents() {
   $("#search").addEventListener("input", (e) => {
     const search = e.target.value; // = $("#search").value
     console.info("search", search);
-    const teams = searchTeams(search);
+    const teams = searchTeams(allTeams, search);
     showTeams(teams);
   });
 
