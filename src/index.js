@@ -115,12 +115,12 @@ function startEditTeam(id) {
 }
 
 function searchTeams(search) {
+  search = search.toLowerCase();
   return allTeams.filter((team) => {
-    if (team.members.toLowerCase().includes(search.toLowerCase())) {
+    if (team.members.toLowerCase().includes(search)) {
       return true;
-    } else if (team.promotion.toLowerCase().includes(search.toLowerCase())) {
-      return true;
-    } else if (team.promotion.toLowerCase().includes(search.toLowerCase())) {
+    }
+    if (team.promotion.toLowerCase().includes(search)) {
       return true;
     }
   });
