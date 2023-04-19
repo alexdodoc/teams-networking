@@ -92,13 +92,17 @@ function formSubmit(e) {
     console.warn("update...?", editId, team);
     updateTeamRequest(team).then((status) => {
       if (status.success) {
-        window.location.reload();
+        //window.location.reload();
+        loadTeams();
+        $("#editForm").reset();
       }
     });
   } else {
     createTeamRequest(team).then((status) => {
       if (status.success) {
-        window.location.reload();
+        //window.location.reload();
+        loadTeams();
+        $("#editForm").reset();
       }
     });
   }
@@ -109,7 +113,8 @@ function deleteTeam(id) {
     console.warn("callback succes");
   }).then((status) => {
     if (status.success) {
-      window.location.reload();
+      //window.location.reload();
+      loadTeams();
     }
   });
 }
@@ -161,9 +166,12 @@ function initEvents() {
   });
 }
 
-getTeamsRequest().then((teams) => {
-  allTeams = teams;
-  showTeams(teams);
-});
+function loadTeams() {
+  getTeamsRequest().then((teams) => {
+    allTeams = teams;
+    showTeams(teams);
+  });
+}
 
+loadTeams();
 initEvents();
