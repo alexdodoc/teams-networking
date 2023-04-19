@@ -117,12 +117,12 @@ function startEditTeam(id) {
 function searchTeams(search) {
   search = search.toLowerCase();
   return allTeams.filter((team) => {
-    if (team.members.toLowerCase().includes(search)) {
-      return true;
-    }
-    if (team.promotion.toLowerCase().includes(search)) {
-      return true;
-    }
+    return (
+      team.members.toLowerCase().includes(search) ||
+      team.promotion.toLowerCase().includes(search) ||
+      team.name.toLowerCase().includes(search) ||
+      team.url.toLowerCase().includes(search)
+    );
   });
 }
 
