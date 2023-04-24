@@ -101,10 +101,17 @@ function formSubmit(e) {
   } else {
     createTeamRequest(team).then((status) => {
       if (status.success) {
+        //v.1
         //window.location.reload();
-        loadTeams(() => {
-          $("#editForm").reset();
-        });
+        //v.2
+        // loadTeams(() => {
+        //   $("#editForm").reset();
+        // });
+        //v.3
+        team.id = status.id;
+        allTeams.push(team);
+        showTeams(allTeams);
+        $("#editForm").reset();
       }
     });
   }
