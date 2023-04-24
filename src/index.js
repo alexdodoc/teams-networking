@@ -118,7 +118,10 @@ function formSubmit(e) {
 
         allTeams = allTeams.map((t) => {
           if (t.id === team.id) {
-            return team;
+            return {
+              ...t, // old props
+              ...team
+            }; // double spread, intersectie cu prioritate obiect 2
           }
           return t;
         });
