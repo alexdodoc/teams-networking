@@ -63,7 +63,13 @@ function getTeamAsHTML(team) {
         </tr>`;
 }
 
+let previewDisplayedTeams;
 function showTeams(teams) {
+  if (teams === previewDisplayedTeams) {
+    console.info("same teams");
+    return;
+  }
+  previewDisplayedTeams = teams;
   const html = teams.map(getTeamAsHTML);
   $("table tbody").innerHTML = html.join("");
 }
@@ -109,7 +115,8 @@ function formSubmit(e) {
         // });
         //v.3
         team.id = status.id;
-        allTeams.push(team);
+        //allTeams.push(team);
+        allTeams = [...allTeams, team];
         showTeams(allTeams);
         $("#editForm").reset();
       }
