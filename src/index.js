@@ -223,5 +223,17 @@ function loadTeams(cb) {
   });
 }
 
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, ms);
+  });
+}
+
+sleep(3000).then(() => {
+  console.info("ready to do %o", "next job");
+});
+
 loadTeams();
 initEvents();
