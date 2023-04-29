@@ -90,7 +90,7 @@ function $(selector) {
   return document.querySelector(selector);
 }
 
-function formSubmit(e) {
+async function formSubmit(e) {
   e.preventDefault();
   //console.warn("submit", e);
   const promotion = $("#promotion").value;
@@ -136,22 +136,14 @@ function formSubmit(e) {
       }
     });
   } else {
-    createTeamRequest(team).then(({ success, id }) => {
-      if (success) {
-        //v.1
-        //window.location.reload();
-        //v.2
-        // loadTeams(() => {
-        //   $("#editForm").reset();
-        // });
-        //v.3
-        team.id = id;
-        //allTeams.push(team);
-        allTeams = [...allTeams, team];
-        showTeams(allTeams);
-        $("#editForm").reset();
-      }
-    });
+    const { success, id } = await createTeamRequest(team);
+    if (success) {
+      team.id = id;
+      //allTeams.push(team);
+      allTeams = [...allTeams, team];
+      showTeams(allTeams);
+      $("#editForm").reset();
+    }
   }
 }
 
