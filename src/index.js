@@ -188,14 +188,14 @@ function initEvents() {
   });
 }
 
-function loadTeams(cb) {
-  return getTeamsRequest().then((teams) => {
-    allTeams = teams;
-    showTeams(teams);
-    if (typeof cb === "function") {
-      cb();
-    }
-  });
+async function loadTeams(cb) {
+  const teams = await getTeamsRequest();
+  allTeams = teams;
+  showTeams(teams);
+  if (typeof cb === "function") {
+    cb(teams);
+  }
+  return teams;
 }
 
 function sleep(ms) {
