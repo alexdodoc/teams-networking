@@ -108,33 +108,21 @@ async function formSubmit(e) {
   if (editId) {
     team.id = editId;
     console.warn("update...?", editId, team);
-    updateTeamRequest(team).then((status) => {
-      if (status.success) {
-        //window.location.reload();
-        // loadTeams().then(() => {
-        //   $("#editForm").reset();
-        // });
-        // allTeams = [...allTeams];
-        // var oldTeam = allTeams.find((t) => t.id === team.id);
-        // oldTeam.promotion = team.promotion;
-        // oldTeam.members = team.members;
-        // oldTeam.name = team.name;
-        // oldTeam.url = team.url;
+    const { success } = await updateTeamRequest(team);
+    if (success) {
+      allTeams = allTeams.map((t) => {
+        if (t.id === team.id) {
+          return {
+            ...t, // old props
+            ...team
+          }; // double spread, intersectie cu prioritate obiect 2
+        }
+        return t;
+      });
 
-        allTeams = allTeams.map((t) => {
-          if (t.id === team.id) {
-            return {
-              ...t, // old props
-              ...team
-            }; // double spread, intersectie cu prioritate obiect 2
-          }
-          return t;
-        });
-
-        showTeams(allTeams);
-        $("#editForm").reset();
-      }
-    });
+      showTeams(allTeams);
+      $("#editForm").reset();
+    }
   } else {
     const { success, id } = await createTeamRequest(team);
     if (success) {
