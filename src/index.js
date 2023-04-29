@@ -104,7 +104,7 @@ async function formSubmit(e) {
     name,
     url
   };
-
+  let changes = false;
   if (editId) {
     team.id = editId;
     console.warn("update...?", editId, team);
@@ -119,19 +119,19 @@ async function formSubmit(e) {
         }
         return t;
       });
-
-      showTeams(allTeams);
-      $("#editForm").reset();
+      changes = true;
     }
   } else {
     const { success, id } = await createTeamRequest(team);
     if (success) {
       team.id = id;
-      //allTeams.push(team);
       allTeams = [...allTeams, team];
-      showTeams(allTeams);
-      $("#editForm").reset();
+      changes = true;
     }
+  }
+  showTeams(allTeams);
+  if (changes) {
+    $("#editForm").reset();
   }
 }
 
