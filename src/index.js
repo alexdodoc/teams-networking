@@ -231,9 +231,12 @@ function sleep(ms) {
   });
 }
 
-sleep(3000).then(() => {
-  console.info("ready to do %o", "next job");
-});
+(() => {
+  console.info("start");
+  sleep(3000).then(() => {
+    console.info("ready to do %o", "next job");
+  });
+})();
 
 loadTeams();
 initEvents();
