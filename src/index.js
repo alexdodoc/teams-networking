@@ -156,13 +156,12 @@ function formSubmit(e) {
 }
 
 async function deleteTeam(id) {
-  const status = await deleteTeamRequest(id, (status) => {
-    console.warn("callback succes");
-  });
-  console.warn("status", status);
-  if (status.success) {
+  const { success } = await deleteTeamRequest(id);
+  if (success) {
     //window.location.reload();
-    loadTeams();
+    //loadTeams();
+    allTeams = allTeams.filter((t) => t.id !== id);
+    showTeams(allTeams);
   }
 }
 
