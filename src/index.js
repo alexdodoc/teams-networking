@@ -155,15 +155,15 @@ function formSubmit(e) {
   }
 }
 
-function deleteTeam(id) {
-  deleteTeamRequest(id, (status) => {
+async function deleteTeam(id) {
+  const status = await deleteTeamRequest(id, (status) => {
     console.warn("callback succes");
-  }).then((status) => {
-    if (status.success) {
-      //window.location.reload();
-      loadTeams();
-    }
   });
+  console.warn("status", status);
+  if (status.success) {
+    //window.location.reload();
+    loadTeams();
+  }
 }
 
 function startEditTeam(edit) {
