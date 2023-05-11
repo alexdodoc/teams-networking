@@ -94,17 +94,8 @@ function $(selector) {
 async function formSubmit(e) {
   e.preventDefault();
   //console.warn("submit", e);
-  const promotion = $("#promotion").value;
-  const members = $("#members").value;
-  const name = $("#name").value;
-  const url = $("#url").value;
+  const team = getFormValues();
 
-  const team = {
-    promotion,
-    members,
-    name,
-    url
-  };
   if (editId) {
     team.id = editId;
     console.warn("update...?", editId, team);
@@ -131,6 +122,28 @@ async function formSubmit(e) {
   showTeams(allTeams) && $("#editForm").reset();
 }
 
+function getFormValues() {
+  const promotion = $("#promotion").value;
+  const members = $("#members").value;
+  const name = $("#name").value;
+  const url = $("#url").value;
+
+  const team = {
+    promotion,
+    members,
+    name,
+    url
+  };
+  return team;
+}
+
+function setFormValues({ promotion, members, name, url }) {
+  $("#promotion").value = promotion;
+  $("#members").value = members;
+  $("#name").value = name;
+  $("#url").value = url;
+}
+
 async function deleteTeam(id) {
   const { success } = await deleteTeamRequest(id);
   if (success) {
@@ -143,12 +156,9 @@ async function deleteTeam(id) {
 
 function startEditTeam(edit) {
   editId = edit;
-  const { promotion, members, name, url } = allTeams.find(({ id }) => id === edit);
+  const team = allTeams.find(({ id }) => id === edit);
 
-  $("#promotion").value = promotion;
-  $("#members").value = members;
-  $("#name").value = name;
-  $("#url").value = url;
+  setFormValues(team);
 }
 
 function searchTeams(teams, search) {
