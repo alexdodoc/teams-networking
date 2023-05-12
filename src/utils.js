@@ -9,3 +9,14 @@ export function sleep(ms) {
     }, ms);
   });
 }
+
+export function debounce(fn, ms) {
+  let timer;
+  return function (e) {
+    clearTimeout(timer);
+    const context = this;
+    timer = setTimeout(function () {
+      fn.call(context, e);
+    }, ms);
+  };
+}
