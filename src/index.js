@@ -13,6 +13,7 @@ function getTeamAsHTML({ id, url, promotion, members, name }) {
 
   return `
         <tr>
+          <td><input type="checkbox" name="selected"/></td>
           <td>${promotion}</td>
           <td>${members}</td>
           <td>${name}</td>
@@ -131,7 +132,14 @@ function initEvents() {
   form.addEventListener("reset", () => {
     editId = undefined;
   });
-
+  function removeSelected() {
+    console.warn("remove selected");
+    // find ids
+    // add mask...
+    //call deleteTeamRequest
+    // remove mask
+  }
+  $("#removeSelected").addEventListener("click", removeSelected);
   $("#search").addEventListener(
     "input",
     debounce(function (e) {
