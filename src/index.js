@@ -135,15 +135,11 @@ function initEvents() {
 
   async function removeSelected() {
     const checkboxes = $$("#editForm input[name=selected][type=checkbox]:checked");
-    console.warn("remove selected", checkboxes);
     const ids = [...checkboxes].map((checkbox) => checkbox.value);
-    console.warn("remove selected", checkboxes, ids);
     $("#editForm").classList.add("loading-mask");
     //call deleteTeamRequest
     const promises = ids.map((id) => deleteTeamRequest(id));
     const results = await Promise.allSettled(promises);
-    console.warn("remove results", results);
-
     await loadTeams();
     $("#editForm").classList.remove("loading-mask");
   }
